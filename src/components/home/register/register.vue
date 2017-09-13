@@ -12,7 +12,7 @@
         </Col>
         <Col span="16" offset="4">
           <FormItem prop="email">
-              <Input type="email" v-model="formInline.email" size="large" placeholder="email">
+              <Input type="text" v-model="formInline.email" size="large" placeholder="email">
                   <Icon type="ios-email-outline" slot="prepend"></Icon>
               </Input>
           </FormItem>
@@ -46,6 +46,9 @@
         ruleInline: {
           user: [
             { required: true, message: '请填写用户名', trigger: 'blur' }
+          ],
+          email: [
+            { required: true, message: '请填写邮箱', trigger: 'blur' }
           ],
           password: [
             { required: true, message: '请填写密码', trigger: 'blur' },

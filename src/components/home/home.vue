@@ -5,11 +5,12 @@
             <router-link to="/home/register"><Icon type="android-person"></Icon> 注册</router-link>
             <router-link to="/home/login"><Icon type="person-add"></Icon> 登录</router-link>
             <router-link to="/home/add"><Icon type="android-add-circle"></Icon> 添加书签</router-link>
+            <router-link to="/home/management"><Icon type="android-add-circle"></Icon> 分类管理</router-link>
             <router-link to="/home/bookList"><Icon type="social-markdown"></Icon> about Me</router-link>
           </div>
       </div> 
       <div class="layout-header">
-          <div class="layout-logo">
+          <div class="layout-logo" @click="backhome">
             云书签
           </div>
       </div>
@@ -19,7 +20,8 @@
         <Col span="12" offset="4"><h1>书签列表</h1></Col>
       </Row>
       <br>
-    <router-view></router-view>
+      <router-link to="/home/bookList" tag="h1">一切从这出发</router-link>
+      <router-view></router-view>
        
       <div style="height: 200px"></div>
       <div class="layout-copy">
@@ -37,6 +39,11 @@ export default {
   },
   mounted () {
     console.log(this)
+  },
+  methods: {
+    backhome() {
+      this.$router.push('/home')
+    }
   }
 }
 </script>

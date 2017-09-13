@@ -47,9 +47,21 @@ export function fetch (url, parmas) {
 
 export default {
   add(classify) {
+    return fetch('/couldbookmarks/index.php?m=home&c=index&a=check', {classify: classify})
+  },
+  addMsg(name, content, classify) {
+    return fetch('/couldbookmarks/index.php?m=home&c=index&a=addMsg', {name: name, content: content, classify: classify})
+  },
+  addClassify(classify) {
+    return fetch('/couldbookmarks/index.php?m=home&c=index&a=addClassify', {classify: classify})
+  },
+  getAllMsg(classify) {
     return fetch('/couldbookmarks/index.php?m=home&c=index&a=getAllMsg', {classify: classify})
   },
-  getMsg() {
-    return fetch('')
+  getClassify(classify) {
+    return fetch('/couldbookmarks/index.php?m=home&c=index&a=getClassify', {classify: classify})
+  },
+  deleteClassify(id) {
+    return fetch('/couldbookmarks/index.php?m=home&c=index&a=deleteClassify', {id: id})
   }
 }

@@ -9,9 +9,7 @@
           <Row>
             <Col span="8">
                <Select v-model="formItem.select" placeholder="请选择">
-                <Option value="beijing">北京市</Option>
-                <Option value="shanghai">上海市</Option>
-                <Option value="shenzhen">深圳市</Option>
+                <Option :value="item.cname" v-for="item in classifyList" :key="item.id">{{item.cname}}</Option>
             </Select>
             </Col>
           </Row>
@@ -37,25 +35,38 @@
   export default {
     data () {
       return {
+        classifyList: [],
         formItem: {
-          input: '',
-          select: '',
-          radio: 'male',
-          checkbox: [],
-          switch: true,
-          date: '',
-          time: '',
+          input: '', // name
+          select: '', // classify
           slider: [20, 50],
-          textarea: ''
+          textarea: '' // content
         }
       }
     },
+    created() {
+      api.getClassify()
+        .then(res => {
+          console.log(res)
+          this.classifyList = res.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     methods: {
       addClass () {
-        api.add('test')
+        api.addMsg(this.formItem.input, this.formItem.textarea, this.formItem.select)
           .then(res => {
-            debugger
-            console.log(res)
+            if (res.status === 1) {
+              let that = this
+              this.$Message.success({
+                content: '添加成功',
+                onClose: function() {
+                  that.$router.push('/home/bookList')
+                }
+              })
+            }
           })
           .catch(error => {
             console.log(error)

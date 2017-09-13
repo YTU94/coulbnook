@@ -6,6 +6,7 @@ import login from '@/components/home/login/login'
 import register from '@/components/home/register/register'
 import add from '@/components/home/add/add'
 import bookList from '@/components/home/bookList/bookList'
+import management from '@/components/home/management/management'
 Vue.use(Router)
 
 export default new Router({
@@ -15,13 +16,17 @@ export default new Router({
       component: home
     },
     {
+      path: '/',
+      redirect: '/home'
+    },
+    {
       path: '/home',
       component: home,
       children: [
-        // {
-        //   redirect: 'bookList',
-        //   component: bookList
-        // },
+        {
+          path: '/',
+          redirect: 'bookList'
+        },
         {
           path: 'bookList',
           component: bookList
@@ -37,6 +42,10 @@ export default new Router({
         {
           path: 'add',
           component: add
+        },
+        {
+          path: 'management',
+          component: management
         }
       ]
     }

@@ -4,7 +4,8 @@ import qs from 'qs'
 // axios 配置
 axios.defaults.timeout = 5000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.baseURL = 'http://localhost:80/'
+axios.defaults.baseURL = 'http://jiankang.juwu168.com/'
+// axios.defaults.baseURL = 'http://localhost:80/'
 // axios.defaults.proxy.port = '80'
 // POST传参序列化
 axios.interceptors.request.use((config) => {
@@ -53,7 +54,7 @@ export default {
     return fetch('/couldbookmarks/index.php?m=home&c=index&a=addMsg', {name: name, content: content, classify: classify})
   },
   addClassify(classify) {
-    return fetch('/couldbookmarks/index.php?m=home&c=index&a=addClassify', {classify: classify})
+    return fetch('/couldbookmarks/index.php?m=home&c=index&a=check', {classify: classify})
   },
   getAllMsg(classify) {
     return fetch('/couldbookmarks/index.php?m=home&c=index&a=getAllMsg', {classify: classify})
@@ -63,5 +64,9 @@ export default {
   },
   deleteClassify(id) {
     return fetch('/couldbookmarks/index.php?m=home&c=index&a=deleteClassify', {id: id})
+  },
+  // 删除msgs
+  delMsg(id) {
+    return fetch('/couldbookmarks/index.php?m=home&c=index&a=delMsg', {id: id})
   }
 }

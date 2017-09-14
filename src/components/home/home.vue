@@ -20,7 +20,6 @@
         <Col span="12" offset="4"><h1>书签列表</h1></Col>
       </Row>
       <br>
-      <router-link to="/home/bookList" tag="h1">一切从这出发</router-link>
       <router-view></router-view>
        
       <div style="height: 200px"></div>

@@ -4,23 +4,15 @@
 			<Col span="16" offset="4">
 				<ul class="">
 					<li class="" v-for="item in msgList" :key="item.id" style="">
-						<!-- <Input type="text" v-model="item.classify"></Input>
-						<Input v-model="item.content">
-								<span slot="prepend">http://</span>
-								<span slot="append">.com</span>
-						</Input>
-            <Col span="12">
-							标题-{{item.name}}
-						</Col>
-						<Col span="12" style="text-align:right">
-              {{item.created_at}}
-							<Button type="warning">删除</Button>
-						</Col> -->
             <Card style="background:#fff; margin-bottom:20px;">
               <p slot="title">{{item.name}}</p>
-              <span slot="extra">{{item.classify}} | </span>
+              <span slot="extra">类别：{{item.classify}}
+                <transition name="slide-fade">
+                  <Button v-show="btnShow === 1" type="warning" @click="delMsg(item.id)">删除</Button>
+                </transition>
+              </span>
               <p>{{item.content}}</p>
-              <p>{{item.created_at}}</p>
+              <p style="text-align:right;">时间：{{item.created_at}}</p>
             </Card>
 					</li>
 				</ul>
@@ -34,6 +26,7 @@
   export default {
     data () {
       return {
+        btnShow: 1,
         msgList: []
       }
     },
@@ -50,11 +43,36 @@
           .catch(error => {
             console.log(error)
           })
+      },
+      delMsg(id) {
+        api.delMsg(id)
+          .then(res => {
+            console.log(res)
+            this.$Message.success({
+              content: '删除成功',
+              onClose: function() {
+                window.location.reload()
+              }
+            })
+          })
+          .catch(error => {
+            console.log(error)
+          })
       }
     }
   }
 </script>
 
 <style lang="stylus" scoped>
-
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

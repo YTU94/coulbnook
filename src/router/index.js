@@ -13,11 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: '/home',
       component: home
-    },
-    {
-      path: '/',
-      redirect: '/home'
     },
     {
       path: '/home',
@@ -25,7 +22,8 @@ export default new Router({
       children: [
         {
           path: '/',
-          redirect: 'bookList'
+          redirect: 'bookList',
+          component: bookList
         },
         {
           path: 'bookList',

@@ -1,7 +1,12 @@
 <template>
 	<div class="row">
+    <br>
+    <Row>
+      <Col span="12" offset="6"><h1>书签列表</h1></Col>
+    </Row>
+    <br>
 		<Row align="middle">
-			<Col span="16" offset="4">
+			<Col span="12" offset="6">
 				<ul class="">
 					<li class="" v-for="item in msgList" :key="item.id" style="">
             <Card style="background:#fff; margin-bottom:20px;">

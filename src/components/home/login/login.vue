@@ -1,18 +1,23 @@
 <template>
 <Row >
+  <br>
+  <Row>
+    <Col span="12" offset="6"><h1>云书签--登录</h1></Col>
+  </Row>
+  <br>
   <Col span="16" offset="4">
     <Form ref="formInline" :model="formInline" :rules="ruleInline" inline >
       <Row style="text-align: center;">
         <Col span="16" offset="4">
           <FormItem prop="user" >
-            <Input type="text" v-model="formInline.user" placeholder="Username">
+            <Input type="text" v-model="formInline.user" size="large" placeholder="Username">
                 <Icon type="ios-person-outline" slot="prepend"></Icon>
             </Input>
         </FormItem>
         </Col>
         <Col span="16" offset="4">
           <FormItem prop="password">
-              <Input type="password" v-model="formInline.password" placeholder="Password">
+              <Input type="password" v-model="formInline.password" size="large" placeholder="Password">
                   <Icon type="ios-locked-outline" slot="prepend"></Icon>
               </Input>
           </FormItem>
@@ -29,6 +34,7 @@
 
 </template>
 <script>
+  import api from 'api/api'
   export default {
     data () {
       return {
@@ -51,11 +57,25 @@
       handleSubmit(name) {
         this.$refs[name].validate((valid) => {
           if (valid) {
-            this.$Message.success('提交成功!')
+            this._login()
           } else {
             this.$Message.error('表单验证失败!')
           }
         })
+      },
+      _login() {
+        api.login(this.formInline.user, this.formInline.password)
+          .then(res => {
+            console.log(res)
+            if (res.status === 1) {
+              this.$Message.success('提交成功!')
+            } else {
+              this.$Message.error(res.message)
+            }
+          })
+          .catch(error => {
+            console.log(error)
+          })
       }
     }
   }

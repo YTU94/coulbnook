@@ -1,6 +1,12 @@
 <template>
+<div>
+  <br>
   <Row>
-    <Col span="16" offset="4">
+    <Col span="12" offset="6"><h1>分类管理</h1></Col>
+  </Row>
+  <br>
+  <Row>
+    <Col span="12" offset="6">
     <Form>
       <FormItem prop="" >
           <Input type="text" v-model="classify" size="large" placeholder="classify">
@@ -10,7 +16,7 @@
     </Form>  
       <Button type="default" @click="addClassify(classify)">添加</Button>
     </Col>
-    <Col span="16" offset="4">
+    <Col span="12" offset="6">
       <ul>
         <Col span="24">
           <li v-for="item in classifyList" :key="item.id">
@@ -23,6 +29,8 @@
       </ul>
     </Col>
   </Row>
+</div>
+  
 </template>
 
 <script>

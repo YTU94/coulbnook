@@ -1,6 +1,12 @@
 <template>
-<Row>
-  <Col span="16" offset="4">
+<div class="">
+  <br>
+  <Row>
+    <Col span="12" offset="6"><h1>添加书签</h1></Col>
+  </Row>
+  <br>
+  <Row>
+  <Col span="12" offset="6">
     <Form :model="formItem" :label-width="80">
         <FormItem label="标题">
             <Input v-model="formItem.input" placeholder="请输入"></Input>
@@ -27,6 +33,8 @@
     </Form>
   </Col>
 </Row>
+</div>
+
 
 </template>
 

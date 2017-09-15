@@ -15,11 +15,6 @@
           </div>
       </div>
       <!-- main body  -->
-      <br>
-      <Row>
-        <Col span="12" offset="4"><h1>书签列表</h1></Col>
-      </Row>
-      <br>
       <router-view></router-view>
        
       <div style="height: 200px"></div>
@@ -80,7 +75,8 @@ export default {
   }
   .layout-ceiling{
     background: #464c5b;
-    padding: 10px 0;
+    padding: 14px 0;
+    font-size 14px
     overflow: hidden;
   }
   .layout-ceiling-main{

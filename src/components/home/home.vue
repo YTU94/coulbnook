@@ -2,11 +2,12 @@
   <div class="layout">
        <div class="layout-ceiling">
           <div class="layout-ceiling-main">
-            <router-link to="/home/register"><Icon type="android-person"></Icon> 注册</router-link>
-            <router-link to="/home/login"><Icon type="person-add"></Icon> 登录</router-link>
-            <router-link to="/home/add"><Icon type="android-add-circle"></Icon> 添加书签</router-link>
-            <router-link to="/home/management"><Icon type="android-add-circle"></Icon> 分类管理</router-link>
-            <router-link to="/home/bookList"><Icon type="social-markdown"></Icon> about Me</router-link>
+            <router-link to="/home/register" v-show="checkLogin === 0"><Icon type="android-person"></Icon> 注册</router-link>
+            <router-link to="/home/login" v-show="checkLogin === 0"><Icon type="person-add"></Icon> 登录</router-link>
+            <router-link to="/home/person" v-show="checkLogin === 1">{{user}}</router-link>
+            <router-link to="/home/add" v-show="checkLogin === 1"><Icon type="android-add-circle"></Icon> 添加书签</router-link>
+            <router-link to="/home/management" v-show="checkLogin === 1"><Icon type="android-add-circle"></Icon> 分类管理</router-link>
+            <router-link to="/home/bookList" v-show="checkLogin === 1"><Icon type="social-markdown"></Icon> about Me</router-link>
           </div>
       </div> 
       <div class="layout-header">
@@ -28,10 +29,18 @@
 export default {
   data () {
     return {
-      value1: '23'
+      value1: '23',
+      user: '用户',
+      checkLogin: 0
     }
   },
   mounted () {
+    if (sessionStorage.username) {
+      this.user = sessionStorage.username
+      this.checkLogin = 1
+    } else {
+      this.checkLogin = 0
+    }
     console.log(this)
   },
   methods: {

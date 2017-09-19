@@ -14,19 +14,22 @@ export default new Router({
     {
       path: '/',
       redirect: '/home',
+      name: 'home',
       component: home
     },
     {
       path: '/home',
+      name: 'home',
       component: home,
       children: [
         {
           path: '/',
-          redirect: 'bookList',
-          component: bookList
+          redirect: 'login',
+          component: login
         },
         {
           path: 'bookList',
+          name: 'bookList',
           component: bookList
         },
         {

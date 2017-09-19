@@ -76,10 +76,12 @@
         })
       },
       _register() {
+        let that = this
         api.register(this.formInline.user, this.formInline.password, this.formInline.email)
           .then(res => {
             console.log(res)
             this.$Message.success('提交成功!')
+            that.$router.push('/home/login')
           })
           .catch(error => {
             console.log(error)

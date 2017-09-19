@@ -22,7 +22,7 @@
           <li v-for="item in classifyList" :key="item.id">
             <Card style="margin-top:10px;">
               <p>{{item.cname}} | {{item.id}}</p>
-              <Button slot="extra" @click="deleteClassify(item.id)">删除</Button>
+              <Button slot="extra" @click="deleteClassify(item.id, $event)">删除</Button>
             </Card>
           </li>
         </Col>
@@ -68,13 +68,14 @@ export default {
           console.log(error)
         })
     },
-    deleteClassify(id) {
+    deleteClassify(id, e) {
       api.deleteClassify(id)
         .then(res => {
           this.$Message.success({
             content: '删除成功',
             onClose: function() {
-              window.location.reload()
+              // window.location.reload()
+              e.target.parentNode.parentNode.parentNode.style.display = 'none'
             }
           })
         })

@@ -12,9 +12,7 @@
             <Card style="background:#fff; margin-bottom:20px;">
               <p slot="title">{{item.name}}</p>
               <span slot="extra">类别：{{item.classify}}
-                <transition name="slide-fade">
-                  <Button v-show="btnShow === 1" type="warning" @click="delMsg(item.id)">删除</Button>
-                </transition>
+                  <Button v-show="btnShow === 1" type="warning" @click="delMsg(item.id, $event)">删除</Button>
               </span>
               <p>{{item.content}}</p>
               <p style="text-align:right;">时间：{{item.created_at}}</p>
@@ -35,6 +33,14 @@
         msgList: []
       }
     },
+    beforeMount () {
+      if (parseInt(sessionStorage.x) === 0) {
+        if (this.$route.query.username) {
+          sessionStorage.x = 1
+          window.location.reload()
+        }
+      }
+    },
     mounted () {
       this.getAllMsg()
     },
@@ -49,14 +55,15 @@
             console.log(error)
           })
       },
-      delMsg(id) {
+      delMsg(id, e) {
         api.delMsg(id)
           .then(res => {
             console.log(res)
             this.$Message.success({
               content: '删除成功',
               onClose: function() {
-                window.location.reload()
+                // window.location.reload()
+                e.target.parentNode.parentNode.parentNode.parentNode.style.display = 'none'
               }
             })
           })

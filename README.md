@@ -3,6 +3,10 @@
 > A Vue.js project
 > 一个云书签系统，这是一个SPA应用，这是SPA部分，
 > 后台是ThinkPHP3.2写的API部分地址： https://github.com/YTU94/Couldbookmarks
+
+## 技术
+vue vue-router iview (vuex)
+
 ## Build Setup
 
 ``` bash

@@ -64,16 +64,16 @@
         })
       },
       _login() {
-        let that = this
+        // let that = this
         api.login(this.formInline.user, this.formInline.password)
           .then(res => {
             console.log(res)
             if (res.status === 1) {
               this.$Message.success('提交成功!')
+              this.$router.push({path: 'bookList', query: {username: sessionStorage.username}})
               sessionStorage.uid = res.data.id
               sessionStorage.username = res.data.username
               sessionStorage.x = 0
-              that.$router.push({path: 'bookList', query: {username: sessionStorage.username}})
             } else {
               this.$Message.error(res.message)
             }

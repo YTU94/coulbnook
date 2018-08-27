@@ -2,6 +2,9 @@
   <div class="layout">
        <div class="layout-ceiling">
           <div class="layout-ceiling-main">
+            <router-link to="/home/videoList" v-show="checkLogin === 0"><Icon type="person-add"></Icon> 全部视屏</router-link>
+            <router-link to="/home/login" v-show="checkLogin === 0"><Icon type="person-add"></Icon> 全部文章</router-link>
+
             <router-link to="/home/register" v-show="checkLogin === 0"><Icon type="android-person"></Icon> 注册</router-link>
             <router-link to="/home/login" v-show="checkLogin === 0"><Icon type="person-add"></Icon> 登录</router-link>
             <router-link to="/home/person" v-show="checkLogin === 1">{{user}}</router-link>

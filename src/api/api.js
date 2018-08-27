@@ -79,5 +79,9 @@ export default {
   // user登录
   login(name, password) {
     return fetch('/couldbookmarks/index.php?m=home&c=index&a=login', {name: name, password: password})
+  },
+  // user登录
+  getAllCourse() {
+    return fetch('/couldbookmarks/index.php?m=course&c=index&a=index', {})
   }
 }
